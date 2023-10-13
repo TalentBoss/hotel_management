@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { CButton, CCard, CCardBody, CCardHeader, CCol, CCollapse, CRow } from '@coreui/react'
-import { DocsExample } from 'src/components'
+import { DocsExample } from '../../../components'
 
 const Collapses = () => {
   const [visible, setVisible] = useState(false)

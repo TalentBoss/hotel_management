@@ -1,6 +1,6 @@
 import React from 'react'
 import { CButton, CCard, CCardBody, CCardHeader, CLink, CTooltip, CRow, CCol } from '@coreui/react'
-import { DocsExample } from 'src/components'
+import { DocsExample } from '../../../components'
 
 const Tooltips = () => {
   return (
