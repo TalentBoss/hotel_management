@@ -30,8 +30,7 @@ const AppSidebar = () => {
       }}
     >
       <CSidebarBrand className="d-none d-md-flex" to="/">
-        <CIcon className="sidebar-brand-full" icon={logoNegative} height={35} />
-        <CIcon className="sidebar-brand-narrow" icon={sygnet} height={35} />
+        <span style={{color: "yellow", fontSize: 20, height: 35}}>Hotel Prices Comparison</span>
       </CSidebarBrand>
       <CSidebarNav>
         <SimpleBar>

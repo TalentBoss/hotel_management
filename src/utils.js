@@ -1,0 +1,18 @@
+export const HOTELS_LIST = [
+  'SON BARBASSA',
+  'SES ROTGES',
+  'SON JAUMELL',
+  'CREU DE TAU',
+  'YARTAN',
+  'JARDINS D\'ARTA',
+  'CAN MORAGUES',
+  'ORIGINS',
+  'ESTELRICA',
+  'CAN POCOVI',
+  'SON TROBAT',
+  'SERRANO ',
+  'SENTITS',
+  'LAGO GARDEN',
+  'THE SEA CLUB',
+  'PRECIO MEDIO'
+]

@@ -2,8 +2,6 @@ import React from 'react'
 
 import {
   CAvatar,
-  CButton,
-  CButtonGroup,
   CCard,
   CCardBody,
   CCardFooter,
@@ -18,8 +16,6 @@ import {
   CTableHeaderCell,
   CTableRow,
 } from '@coreui/react'
-import { CChartLine } from '@coreui/react-chartjs'
-import { getStyle, hexToRgba } from '@coreui/utils'
 import CIcon from '@coreui/icons-react'
 import {
   cibCcAmex,
@@ -38,7 +34,6 @@ import {
   cifPl,
   cifUs,
   cibTwitter,
-  cilCloudDownload,
   cilPeople,
   cilUser,
   cilUserFemale,
@@ -56,7 +51,7 @@ import WidgetsDropdown from '../widgets/WidgetsDropdown'
 import AChart from "../charts/AChart";
 
 const Dashboard = () => {
-  const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
+  //const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
 
   const progressExample = [
     { title: 'Visits', value: '29.703 Users', percent: 40, color: 'success' },

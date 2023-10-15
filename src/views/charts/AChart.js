@@ -3,12 +3,20 @@ const AChart = () => {
   const state = {
     series: [
       {
-        name: "High - 2013",
-        data: [28, 29, 33, 36, 32, 32, 33]
+        name: "SON BARBASSA",
+        data: [272, 329, 333, 298, 354, 384, 323, 314, 291, 262, 226, 253]
       },
       {
-        name: "Low - 2013",
-        data: [12, 11, 14, 18, 17, 13, 13]
+        name: "SES ROTGES",
+        data: [312, 211, 314, 338, 267, 283, 263, 312, 332, 245, 342, 298]
+      },
+      {
+        name: "SON JAUMELL",
+        data: [283, 251, 314, 278, 267, 231, 323, 333, 312, 262, 321, 291]
+      },
+      {
+        name: "CREU DE TAU",
+        data: [329, 231, 254, 318, 317, 243, 317, 261, 249, 284, 329, 332]
       }
     ],
     options: {
@@ -27,7 +35,7 @@ const AChart = () => {
           show: false
         }
       },
-      colors: ['#77B6EA', '#545454'],
+      colors: ['#1E90FF', '#FFA500', '#4caf50','#FF4500'],
       dataLabels: {
         enabled: true,
       },
@@ -49,7 +57,7 @@ const AChart = () => {
         size: 1
       },
       xaxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         title: {
           text: 'Month'
         }
@@ -58,8 +66,8 @@ const AChart = () => {
         title: {
           text: 'Temperature'
         },
-        min: 5,
-        max: 40
+        min: 200,
+        max: 400
       },
       legend: {
         position: 'top',
