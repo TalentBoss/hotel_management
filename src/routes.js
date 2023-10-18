@@ -49,12 +49,12 @@ const Modals = React.lazy(() => import('./views/notifications/modals/Modals'))
 const Toasts = React.lazy(() => import('./views/notifications/toasts/Toasts'))
 
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
-const EachHotel = React.lazy(() => import('./views/theme/EachHotel'))
+const EachHotel = React.lazy(() => import('./views/pages/subpages/EachHotel'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
-  { path: '/theme/each-hotel', name: 'EachHotel', element: EachHotel},
+  { path: '/each-hotel', name: 'EachHotel', element: EachHotel},
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },
   { path: '/theme/typography', name: 'Typography', element: Typography },

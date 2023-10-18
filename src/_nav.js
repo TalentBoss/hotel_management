@@ -41,11 +41,6 @@ const _nav = [
     name: 'Data Manage',
     to: '/theme/typography',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
-    name: '',
-    to: '/theme/EachHotel',
   }
 ]
 

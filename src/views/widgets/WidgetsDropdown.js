@@ -70,15 +70,12 @@ const WidgetsDropdown = ({this_week_prices, pre_week_prices}) => {
      260.31
   ]
 
-  const viewEachHotelData = (hotelId) => {
-    const request = {
-      id: hotelId
-    }
-    axios.post("/api/hotel/hans", request)
+  const viewEachHotelData = (id) => {
+    axios.get(`/api/hotel/hans/${id}`)
       .then((response) => {
         const gptResponse =response.data;
         console.log(gptResponse)
-        window.location.href = '/#/theme/each-hotel'
+        window.location.href = '/#/each-hotel'
       })
       .catch((error) => {
         if (error.response) {
