@@ -13,6 +13,7 @@ import { CChartBar, CChartLine } from '@coreui/react-chartjs'
 import CIcon from '@coreui/icons-react'
 import { cilArrowBottom, cilArrowTop, cilOptions } from '@coreui/icons'
 import { HOTELS_LIST } from "../../utils";
+import axios from 'axios';
 
 /*const preVsThisWeekPercentage = (this_week_data, pre_week_data) => {
   const percentages = [];
@@ -69,11 +70,28 @@ const WidgetsDropdown = ({this_week_prices, pre_week_prices}) => {
      260.31
   ]
 
+  const viewEachHotelData = (hotelId) => {
+    const request = {
+      id: hotelId
+    }
+    axios.post("/api/hotel/hans", request)
+      .then((response) => {
+        const gptResponse =response.data;
+        console.log(gptResponse)
+        window.location.href = '/#/theme/each-hotel'
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response)
+        }
+      });
+  }
+
   return (
     <CRow>
       {
         HOTELS_LIST.map((hotel, index) => (
-          <CCol sm={6} lg={3} key={index}>
+          <CCol sm={6} lg={3} key={index} onClick={() => viewEachHotelData(index)} style={{cursor: 'pointer'}}>
         <CWidgetStatsA
           className="mb-4"
           color={colors_list[index%4]}
@@ -160,7 +178,6 @@ const WidgetsDropdown = ({this_week_prices, pre_week_prices}) => {
         />
       </CCol>
         ))}
-
     </CRow>
   )
 }
