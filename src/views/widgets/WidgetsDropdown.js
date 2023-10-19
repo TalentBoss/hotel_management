@@ -71,6 +71,9 @@ const WidgetsDropdown = ({this_week_prices, pre_week_prices}) => {
   ]
 
   const viewEachHotelData = (id) => {
+    const request = {
+      hotel_id: id
+    }
     axios.get(`/api/hotel/hans/${id}`)
       .then((response) => {
         const gptResponse =response.data;
