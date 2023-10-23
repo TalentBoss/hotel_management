@@ -18,7 +18,7 @@ import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 const _nav = [
   {
     component: CNavItem,
-    name: 'LUCAS PAGE',
+    name: 'Home',
     to: '/dashboard',
     icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
     badge: {
@@ -32,8 +32,8 @@ const _nav = [
   },
   {
     component: CNavItem,
-    name: 'Users',
-    to: '/theme/colors',
+    name: 'Add Hotel',
+    to: '/pages/subpages/AddHotel',
     icon: <CIcon icon={cilDrop} customClassName="nav-icon" />,
   },
   {

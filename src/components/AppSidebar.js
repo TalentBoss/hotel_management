@@ -2,18 +2,17 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { CSidebar, CSidebarBrand, CSidebarNav, CSidebarToggler } from '@coreui/react'
-import CIcon from '@coreui/icons-react'
 
 import { AppSidebarNav } from './AppSidebarNav'
 
-import { logoNegative } from '../assets/brand/logo-negative'
-import { sygnet } from '../assets/brand/sygnet'
 
 import SimpleBar from 'simplebar-react'
 import 'simplebar/dist/simplebar.min.css'
 
 // sidebar nav config
 import navigation from '../_nav'
+import {cilArrowTop, cilBarChart, cilChartLine} from "@coreui/icons";
+import CIcon from "@coreui/icons-react";
 
 const AppSidebar = () => {
   const dispatch = useDispatch()
@@ -30,7 +29,7 @@ const AppSidebar = () => {
       }}
     >
       <CSidebarBrand className="d-none d-md-flex" to="/">
-        <span style={{color: "yellow", fontSize: 20, height: 35}}>Hotel Prices Comparison</span>
+        <span style={{color: "yellow", fontSize: 24, height: 35, fontWeight: 'bold', fontStyle: 'italic'}}><CIcon icon={cilChartLine} />  Lucas's Website</span>
       </CSidebarBrand>
       <CSidebarNav>
         <SimpleBar>

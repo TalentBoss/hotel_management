@@ -15,4 +15,6 @@ export const HOTELS_LIST = [
   'LAGO GARDEN',
   'THE SEA CLUB',
   'PRECIO MEDIO'
-]
+];
+export const ADD_NEW_PRICES = 'ADD_NEW_PRICES';
+export const EDIT_EXISTING_PRICES = 'EDIT_EXISTING_PRICES';

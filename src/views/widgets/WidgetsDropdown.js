@@ -11,7 +11,7 @@ import {
 import { getStyle } from '@coreui/utils'
 import { CChartBar, CChartLine } from '@coreui/react-chartjs'
 import CIcon from '@coreui/icons-react'
-import { cilArrowBottom, cilArrowTop, cilOptions } from '@coreui/icons'
+import {cilArrowBottom, cilArrowTop, cilBasket, cilOptions, cilSettings, cilUserFollow} from '@coreui/icons'
 import { HOTELS_LIST } from "../../utils";
 import axios from 'axios';
 
@@ -74,7 +74,18 @@ const WidgetsDropdown = ({this_week_prices, pre_week_prices}) => {
     const request = {
       hotel_id: id
     }
-    axios.get(`/api/hotel/hans/${id}`)
+    /*axios.get(`/api/hotel/hans/${id}`)
+      .then((response) => {
+        const gptResponse =response.data;
+        console.log(gptResponse)
+        window.location.href = '/#/each-hotel'
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response)
+        }
+      });*/
+    axios.post(`/api/hotel/view-each-hotel/`, request)
       .then((response) => {
         const gptResponse =response.data;
         console.log(gptResponse)
@@ -99,24 +110,12 @@ const WidgetsDropdown = ({this_week_prices, pre_week_prices}) => {
             <>
               &#8364;{this_week_prices[index]}{' '}
               <span className="fs-6 fw-normal">
-                ({ roundToDecimalPlaces(pre_week_prices[index], this_week_prices[index], 2) } % <CIcon icon={cilArrowTop} />)
+                ({ roundToDecimalPlaces(pre_week_prices[index], this_week_prices[index], 2) } % <CIcon icon={cilArrowTop} size="xl" />)
               </span>
             </>
           }
           title={hotel}
-          action={
-            <CDropdown alignment="end">
-              <CDropdownToggle color="transparent" caret={false} className="p-0">
-                <CIcon icon={cilOptions} className="text-high-emphasis-inverse" />
-              </CDropdownToggle>
-              <CDropdownMenu>
-                <CDropdownItem>Action</CDropdownItem>
-                <CDropdownItem>Another action</CDropdownItem>
-                <CDropdownItem>Something else here...</CDropdownItem>
-                <CDropdownItem disabled>Disabled action</CDropdownItem>
-              </CDropdownMenu>
-            </CDropdown>
-          }
+          action={<CIcon className="me-2" icon={cilBasket} size="lg" />}
           chart={
             <CChartLine
               className="mt-3 mx-3"
