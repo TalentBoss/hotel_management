@@ -50,12 +50,12 @@ const Toasts = React.lazy(() => import('./views/notifications/toasts/Toasts'))
 
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 const EachHotel = React.lazy(() => import('./views/pages/subpages/EachHotel'))
-const AddHotel = React.lazy(() => import('./views/pages/subpages/AddHotel'))
+const AddHotel = React.lazy(() => import('./views/theme/addhotel/AddHotel'))
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
-  { path: '/each-hotel', name: 'EachHotel', element: EachHotel },
-  { path: '/add-hotel', name: 'AddHotel', element: AddHotel },
+  { path: '/each-hotel/:id', name: 'EachHotel', element: EachHotel },
+  { path: '/theme/addhotel', name: 'AddHotel', element: AddHotel },
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },
   { path: '/theme/typography', name: 'Typography', element: Typography },

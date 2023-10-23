@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {
   CButton,
   CCard,
@@ -24,6 +24,7 @@ import {
 } from '@coreui/react'
 import TripleChart from "../../charts/TripleChart";
 import {ADD_NEW_PRICES, EDIT_EXISTING_PRICES} from "../../../utils";
+import axios from "axios";
 
 const EachHotel = () => {
   const [hotelPricesState, setHotelPricesState] = useState([
@@ -56,6 +57,7 @@ const EachHotel = () => {
      517.00,
      486.00],
   ]);
+
   const [visible, setVisible] = useState(false);
   const [selectedState, setSelectedState] = useState(hotelPricesState[0]);
   const [selectedId, setSelectedId] = useState(-1);
@@ -64,6 +66,44 @@ const EachHotel = () => {
     initialAddedState.push(100);
   const [addedState, setAddedState] = useState(initialAddedState);
   const [operationState, setOperationState] = useState(ADD_NEW_PRICES);
+  const [yearId, setYearId] = useState(0);
+  const [totalState, setTotalState] = useState([]);
+
+
+  useEffect(() => {
+    const idPos = window.location.href.lastIndexOf('/') + 1;
+    let id = window.location.href.substring(idPos);
+
+    /*axios.get(`/api/hotel/hans/${id}`)
+      .then((response) => {
+        const gptResponse =response.data;
+        console.log(gptResponse)
+
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response)
+        }
+      });*/
+    axios.post(`/api/hotel/view_each_hotel/${id}`)
+      .then((response) => {
+        const hotelData =response.data.data;
+        if (hotelData.length > 0) {
+
+          setTotalState(hotelData);
+          setYearId(0);
+          // setHotelPricesState(hotelData[yearId].prices_data);
+          console.log(yearId, hotelPricesState)
+        }
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response)
+        }
+      });
+  }, []);
+
+
 
   const updateSelectedState = idx => e => {
     const indexOfSelectedState = hotelPricesState.indexOf(selectedState);
@@ -87,7 +127,7 @@ const EachHotel = () => {
   const updateExistingData = () => {
     // console.log(selectedState)
     // console.log(hotelPricesState)
-    console.log(selectedId)
+   // console.log(selectedId)
   }
 
   const setOperationStateAsAdd = () => {
@@ -96,11 +136,11 @@ const EachHotel = () => {
   }
 
   const addNewData = () => {
-    console.log(addedState)
+   // console.log(addedState)
     let newState = hotelPricesState;
     newState.push(addedState);
     setHotelPricesState(newState);
-    console.log(hotelPricesState)
+   // console.log(hotelPricesState)
   }
 
   const VerticallyCentered = () => {
@@ -114,6 +154,29 @@ const EachHotel = () => {
             <CModalTitle>Edit Room Price</CModalTitle>
           </CModalHeader>
           <CModalBody>
+            <CInputGroup className="mb-3" key={8888}>
+              <CInputGroupText>Year </CInputGroupText>
+              <CFormInput
+                placeholder="price"
+                aria-label="price"
+                aria-describedby="basic-addon1"
+                value={2023}
+                type='number'
+              />
+            </CInputGroup>
+            {
+              (1===1) ? (
+                <CInputGroup className="mb-3" key={9999}>
+                  <CInputGroupText>Year </CInputGroupText>
+                  <CFormInput
+                    placeholder="price"
+                    aria-label="price"
+                    aria-describedby="basic-addon1"
+                    defaultValue={4}
+                    type='number'
+                  />
+                </CInputGroup>) : ''
+            }
             {
               (operationState === EDIT_EXISTING_PRICES) ?
                 selectedState.map((item, id) => (
@@ -171,7 +234,7 @@ const EachHotel = () => {
     setSelectedId(index)
     setVisible(!visible);
     setSelectedState(selectedData);
-    console.log('$$$$ ', selectedId)
+   // console.log('$$$$ ', selectedId)
   }
 
   return (
@@ -183,10 +246,12 @@ const EachHotel = () => {
           </CCardHeader>
           <CCardBody>
             <CFormSelect aria-label="Default select example">
-              <option>2023</option>
-              <option value="1">2022</option>
-              <option value="2">2021</option>
-              <option value="3">2020</option>
+              {
+                totalState.map(({year}, idx) => (
+                  <option value={year} key={idx}>{year}</option>
+                ))
+              }
+
             </CFormSelect>
           </CCardBody>
         </CCard>
@@ -215,7 +280,7 @@ const EachHotel = () => {
               <CTableBody>
 
                 {
-                  hotelPricesState.map((item, index) => (
+                  hotelPricesState && yearId && hotelPricesState.map((item, index) => (
                     <CTableRow key={index} style={{cursor: "pointer"}} onClick={() => setModalAndSelectedState(item, index)}>
                       <CTableHeaderCell scope="row">{index + 1}</CTableHeaderCell>
                       <CTableDataCell>{item[0]}</CTableDataCell>
@@ -233,7 +298,10 @@ const EachHotel = () => {
               </CButton>
             </div>
             {VerticallyCentered()}
-            <TripleChart props={hotelPricesState}/>
+            {
+              (yearId&&hotelPricesState) ? <TripleChart props={hotelPricesState}/> : ''
+            }
+
           </CCardBody>
         </CCard>
       </CCol>

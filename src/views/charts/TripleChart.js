@@ -15,7 +15,7 @@ const TripleChart = ({ props }) => {
     }
     series[i].data = chartData
   }
-  console.log(series)
+  console.log(props)
 
 
   const state = {

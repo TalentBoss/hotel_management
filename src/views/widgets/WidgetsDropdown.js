@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {
   CRow,
   CCol,
@@ -30,7 +30,21 @@ const roundToDecimalPlaces = (preNumber, thisNumber, decimalPlaces) => {
   return Math.round(number * factor) / factor;
 }
 
+
 const WidgetsDropdown = ({this_week_prices, pre_week_prices}) => {
+  const [hotels, setHotels] = useState([]);
+  useEffect(() => {
+    axios.post(`/api/hotel_list/`)
+      .then((response) => {
+        const hotelList =response.data.data;
+        setHotels(hotelList);
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response);
+        }
+      });
+  })
   const colors_list = ['info', 'success', 'danger', 'warning'];
   this_week_prices = [
      368.00,
@@ -71,38 +85,14 @@ const WidgetsDropdown = ({this_week_prices, pre_week_prices}) => {
   ]
 
   const viewEachHotelData = (id) => {
-    const request = {
-      hotel_id: id
-    }
-    /*axios.get(`/api/hotel/hans/${id}`)
-      .then((response) => {
-        const gptResponse =response.data;
-        console.log(gptResponse)
-        window.location.href = '/#/each-hotel'
-      })
-      .catch((error) => {
-        if (error.response) {
-          console.log(error.response)
-        }
-      });*/
-    axios.post(`/api/hotel/view-each-hotel/`, request)
-      .then((response) => {
-        const gptResponse =response.data;
-        console.log(gptResponse)
-        window.location.href = '/#/each-hotel'
-      })
-      .catch((error) => {
-        if (error.response) {
-          console.log(error.response)
-        }
-      });
+    window.location.href = `/#/each-hotel/${id}`;
   }
 
   return (
     <CRow>
       {
-        HOTELS_LIST.map((hotel, index) => (
-          <CCol sm={6} lg={3} key={index} onClick={() => viewEachHotelData(index)} style={{cursor: 'pointer'}}>
+        hotels && Array.isArray(hotels) && hotels.map(({hotel_name, _id}, index) => (
+          <CCol sm={6} lg={3} key={_id} onClick={() => viewEachHotelData(_id)} style={{cursor: 'pointer'}}>
         <CWidgetStatsA
           className="mb-4"
           color={colors_list[index%4]}
@@ -114,7 +104,7 @@ const WidgetsDropdown = ({this_week_prices, pre_week_prices}) => {
               </span>
             </>
           }
-          title={hotel}
+          title={hotel_name}
           action={<CIcon className="me-2" icon={cilBasket} size="lg" />}
           chart={
             <CChartLine

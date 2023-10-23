@@ -33,7 +33,7 @@ const _nav = [
   {
     component: CNavItem,
     name: 'Add Hotel',
-    to: '/pages/subpages/AddHotel',
+    to: '/theme/addhotel',
     icon: <CIcon icon={cilDrop} customClassName="nav-icon" />,
   },
   {
