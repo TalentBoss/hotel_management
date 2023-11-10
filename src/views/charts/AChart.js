@@ -18,6 +18,7 @@ const AChart = () => {
         name: "CREU DE TAU",
         data: [329, 231, 254, 318, 317, 243, 317, 261, 249, 284, 329, 332]
       }
+
     ],
     options: {
       chart: {
